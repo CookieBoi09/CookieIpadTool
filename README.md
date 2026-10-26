@@ -1,5 +1,56 @@
-# git_test1
- git_test4
-# git_test4
-# 1Gittest
-# CookieIpadTool
+# Lint
+
+Lint is a free static flashcard and notes web app hosted with GitHub Pages:
+
+https://cookieboi09.github.io/CookieIpadTool/
+
+## Notes
+
+Open **Notes** in the main sidebar (inside the library menu on a phone). Create nested folders and notes; rename folders, move notes with the folder picker, and search notes within a folder or across **All notes**. Removing a folder keeps its notes and subfolders by moving them up one level. Deleting a note requires confirmation.
+
+Notes have a title, a text area, and a bounded drawing area marked with a dotted outline.
+
+- Scroll normally with the mouse wheel or a Mac trackpad's two-finger gesture.
+- To draw, move the pointer into the drawing area, **hold Space**, and move the mouse or use the trackpad to move the pointer. You do not need to hold the mouse button. Release Space to stop.
+- If you were typing, click the drawing area first to move focus out of the text field. Space still types spaces inside text fields and activates focused buttons normally.
+- Choose **Pen** or **Highlighter**, then choose an ink color and width. Highlighter strokes are translucent.
+- Drawing is clipped to the dotted boundary. Leaving the boundary ends the current stroke; re-entering starts a separate stroke without joining the two points.
+- Undo, redo, and clear apply to drawings. Clearing drawings requires confirmation and preserves note text.
+- Stylus contact can also draw; ordinary touch gestures scroll. Window blur, pointer cancellation, or hiding the tab ends the current drawing gesture.
+
+This uses standard browser pointer, keyboard, and wheel events. Browsers do not expose a Mac trackpad as an absolute-position drawing tablet: one-finger pointer motion draws while Space is held; two-finger gestures scroll. No native macOS integration or permissions are needed.
+
+### Storage
+
+Notes autosave to `lint.web.notes.v1` in browser localStorage. Existing flashcards retain `lint.web.library.v1`; adding notes does not reset or migrate them. Notes and flashcards have separate backup buttons and formats. Notes backups include folder relationships, text, and vector strokes. Export a notes backup before clearing browser data. Data does not sync across devices.
+
+Save failures are shown as **Not saved**, keeping the current working copy available for export. Corrupt saved data is preserved instead of overwritten. Another tab changing an open note blocks further writes until the conflict is resolved by export/reload. Notes backups validate folder references and bounds on drawing points.
+
+## Development
+
+```sh
+npm ci --cache /workspace/.cache/npm
+npm start
+```
+
+Serves `site/` on port 5173. On other machines, omit the cache override. This static site has no build step, paid backend, API credentials, or external runtime dependencies. HTTPS is required in production; localhost is suitable for development.
+
+```sh
+npm test
+npm run test:browser
+```
+
+Browser tests use `/usr/bin/chromium` in the cloud workspace. Adapt `playwright.config.js` to an installed browser elsewhere. The test runner uses port 5173, so stop your development server before running tests.
+
+- `site/notes/`: readable notes application source, model/backup validation, input controller, and styling.
+- `site/app.js`, `site/app.css`, `site/fonts/`: preserved deployed flashcard build from commit `a7e810fc3216f755924d86564a076d2d11dd8425`. It supports math and Python/Java coding cards. Do not regenerate or replace this bundle without recovered source and regression tests.
+- `site/index.html`: loads both independent application sections. `site/.nojekyll` keeps GitHub Pages from transforming the static files.
+- `tests/`: node model tests and browser integration tests.
+
+The cloud workspace was replaced before notes work began. The prior uncommitted native/flashcard source was absent in the replacement environment, so the previously deployed flashcard build was recovered from `origin/gh-pages` and retained. Notes source is served directly as ES modules and preserved with the deployment. This repository contains no newly built native iPad version of the notes feature.
+
+## Validation
+
+Coverage includes normal scroll vs. Space drawing, clipped stroke boundaries, pen/highlighter settings, undo/redo, blur release, Space in text inputs, nested folder operations, reload persistence, backup isolation, corrupt-data preservation, desktop/mobile layout, and the existing flashcard Python/Java selector.
+
+Browser interaction tests run in Linux Chromium. Physical Mac trackpad and Safari behavior still need device testing.

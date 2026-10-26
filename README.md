@@ -4,6 +4,14 @@ Lint is a free static flashcard and notes web app hosted with GitHub Pages:
 
 https://cookieboi09.github.io/CookieIpadTool/
 
+## Coding cards: practice, solution, and explanation
+
+When creating or editing a coding card, enter the saved solution in the code editor and add a separate **Explanation** below it. Both fields are saved in the card and included in flashcard JSON backups; older cards without explanations remain compatible.
+
+During study, **Your answer** is an empty Python/Java editor beneath the question. The saved solution and explanation remain hidden until **Reveal answer**. Revealing preserves your attempt and shows the saved code alongside it, followed by the explanation and a text-comparison summary. **View line-by-line differences** highlights lines unique to each answer. After editing your attempt, use **Compare again** to refresh the result.
+
+Comparison does not execute code or determine functional correctness. Different valid implementations may differ from the saved solution. It normalizes line endings but preserves spaces and indentation. Blank attempts are identified separately, and very large answers skip line-level highlighting to keep the interface responsive. Review attempts are temporary for the current study session and never overwrite the saved solution. The Again/Hard/Good/Easy rating remains your choice.
+
 ## Notes
 
 Open **Notes** in the main sidebar (inside the library menu on a phone). Create nested folders and notes; rename folders, move notes with the folder picker, and search notes within a folder or across **All notes**. Removing a folder keeps its notes and subfolders by moving them up one level. Deleting a note requires confirmation.
@@ -43,7 +51,7 @@ npm run test:browser
 Browser tests use `/usr/bin/chromium` in the cloud workspace. Adapt `playwright.config.js` to an installed browser elsewhere. The test runner uses port 5173, so stop your development server before running tests.
 
 - `site/notes/`: readable notes application source, model/backup validation, input controller, and styling.
-- `site/app.js`, `site/app.css`, `site/fonts/`: preserved deployed flashcard build from commit `a7e810fc3216f755924d86564a076d2d11dd8425`. It supports math and Python/Java coding cards. Do not regenerate or replace this bundle without recovered source and regression tests.
+- `site/app.js`, `site/app.css`, `site/fonts/`: dependency bundle based on the deployed flashcard build from commit `a7e810fc3216f755924d86564a076d2d11dd8425`. It supports math and Python/Java coding cards. The coding review and explanation changes are applied with guarded patches from readable sources in `src/`. Run `python3 scripts/update-flashcards.py` after changing `src/review.js` or `src/comparison.js`; the script preserves the bundled dependencies. Do not otherwise regenerate or replace this bundle without recovered source and regression tests.
 - `site/index.html`: loads both independent application sections. `site/.nojekyll` keeps GitHub Pages from transforming the static files.
 - `tests/`: node model tests and browser integration tests.
 

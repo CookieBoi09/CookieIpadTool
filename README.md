@@ -4,6 +4,12 @@ Lint is a free static flashcard and notes web app hosted with GitHub Pages:
 
 https://cookieboi09.github.io/CookieIpadTool/
 
+## Restudy a deck
+
+Open any deck and select **Restudy deck** to practice every card, including cards that are not due. Reveal each answer, then use **Next card** or **Finish practice**. This practice mode leaves due dates, intervals, and review history unchanged. It works for math and coding cards; coding attempts start blank for each new session.
+
+The completion screen also offers **Restudy deck**, so you can immediately go through the deck again. Empty decks have the option disabled until a card is added. **Study now** continues to review only due cards and update their schedules normally.
+
 ## Coding cards: practice, solution, and explanation
 
 When creating or editing a coding card, enter the saved solution in the code editor and add a separate **Explanation** below it. Both fields are saved in the card and included in flashcard JSON backups; older cards without explanations remain compatible.

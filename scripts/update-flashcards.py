@@ -16,6 +16,8 @@ replace('n.oninput=()=>{e.front=n.value', 're.querySelector("#coding-explanation
 replace('["#language-field","#code-editor","#code-hint"]', '["#language-field","#code-editor","#code-hint","#coding-explanation-field"]')
 replace('typeof s.back!="string"||!s.back.trim()||', 'typeof s.back!="string"||!s.back.trim()||(s.explanation!==void 0&&typeof s.explanation!=="string")||')
 replace('`${n.front} ${n.back}`.toLowerCase()', '`${n.front} ${n.back} ${n.explanation||""}`.toLowerCase()')
+replace('it.querySelectorAll("[data-add]")', 'it.querySelectorAll("[data-restudy]").forEach(i=>i.onclick=()=>xA(i.dataset.restudy,true)),it.querySelectorAll("[data-add]")')
+replace('<button class="outline" data-add="${Pe(r.id)}">+ Add card</button>', '<button class="outline" data-restudy="${Pe(r.id)}" ${e.length?"":"disabled"} title="Practice every card without changing review dates">Restudy deck</button><button class="outline" data-add="${Pe(r.id)}">+ Add card</button>')
 start=s.find('/* LINT_REVIEW_START */')
 if start<0:start=s.index('function xA(')
 end=s.index('function wA(',start)

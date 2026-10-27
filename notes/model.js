@@ -23,6 +23,7 @@ export function makeNote(folderId = null) {
     title: "Untitled note",
     text: "",
     strokes: [],
+    ...(globalThis.lintNative?.platform === "macOS" ? {pageHeight:1400} : {}),
     created: Date.now(),
     updated: Date.now(),
   };
@@ -68,6 +69,7 @@ export function validate(value) {
       typeof note.text !== "string" ||
       !Number.isFinite(note.created) ||
       !Number.isFinite(note.updated) ||
+      (note.pageHeight !== undefined && ![620,1400].includes(note.pageHeight)) ||
       !Array.isArray(note.strokes)
     )
       fail();
@@ -91,7 +93,7 @@ export function validate(value) {
           point[0] < 0 ||
           point[0] > WIDTH ||
           point[1] < 0 ||
-          point[1] > HEIGHT
+          point[1] > (note.pageHeight || HEIGHT)
         )
           fail();
         if (++pointCount > 200000)

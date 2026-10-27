@@ -712,3 +712,5 @@ kbd {
     padding: 40px 18px;
   }
 }
+
+.native-trackpad-controls{display:flex;align-items:center;gap:12px;margin:15px 0;color:#617052;font-size:10px;line-height:1.7}.native-trackpad-controls button{background:#34462b;color:#eff4e6;border-radius:5px;padding:9px 12px;white-space:nowrap;font-size:10px}.native-trackpad-controls button[aria-pressed=false]{background:#dce3cd;color:#34462b}.native-trackpad-region{pointer-events:none}

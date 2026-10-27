@@ -1,11 +1,13 @@
+import { attachNativeDrawing } from "./native-drawing.js";
 import { WIDTH, HEIGHT } from "./model.js";
 const NS = "http://www.w3.org/2000/svg";
 export function pointInBoard(event, svg) {
   const rect = svg.getBoundingClientRect();
   if (!rect.width || !rect.height) return null;
   const x = ((event.clientX - rect.left) / rect.width) * WIDTH;
-  const y = ((event.clientY - rect.top) / rect.height) * HEIGHT;
-  return x >= 0 && x <= WIDTH && y >= 0 && y <= HEIGHT
+  const pageHeight = svg.viewBox?.baseVal.height || HEIGHT;
+  const y = ((event.clientY - rect.top) / rect.height) * pageHeight;
+  return x >= 0 && x <= WIDTH && y >= 0 && y <= pageHeight
     ? [Math.round(x * 10) / 10, Math.round(y * 10) / 10]
     : null;
 }
@@ -34,6 +36,7 @@ export function attachDrawing(
   svg,
   { getNote, getTool, changed, status, active },
 ) {
+  if (window.lintNative?.platform === "macOS") return attachNativeDrawing(svg, {getNote,getTool,changed,status,active,makePath:strokeElement});
   let space = false,
     penPointer = null,
     current = null,

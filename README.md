@@ -4,6 +4,10 @@ Lint is a free static flashcard and notes web app hosted with GitHub Pages:
 
 https://cookieboi09.github.io/CookieIpadTool/
 
+## macOS desktop app
+
+A native AppKit/WKWebView app bundles the full website and adds absolute trackpad positioning on a larger notes page. See [macOS build and usage instructions](macos/README.md). The public download page is `desktop.html` on GitHub Pages; downloads appear after a successful macOS build. Website and app libraries are separate, with manual backup transfer.
+
 ## Restudy a deck
 
 Open any deck and select **Restudy deck** to practice every card, including cards that are not due. Reveal each answer, then use **Next card** or **Finish practice**. This practice mode leaves due dates, intervals, and review history unchanged. It works for math and coding cards; coding attempts start blank for each new session.

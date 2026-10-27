@@ -1,0 +1,21 @@
+macos/Sources/TrackpadView.swift:12:9: warning: 'acceptsTouchEvents' was deprecated in macOS 10.12.2: Use allowedTouchTypes instead [#DeprecatedDeclaration]
+10 |     override init(frame frameRect: NSRect) {
+11 |         super.init(frame: frameRect)
+12 |         acceptsTouchEvents = true
+   |         `- warning: 'acceptsTouchEvents' was deprecated in macOS 10.12.2: Use allowedTouchTypes instead [#DeprecatedDeclaration]
+13 |         allowedTouchTypes = [.indirect]
+14 |         wantsRestingTouches = true
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+macos/Sources/TrackpadView.swift:12:9: warning: 'acceptsTouchEvents' was deprecated in macOS 10.12.2: Use allowedTouchTypes instead [#DeprecatedDeclaration]
+10 |     override init(frame frameRect: NSRect) {
+11 |         super.init(frame: frameRect)
+12 |         acceptsTouchEvents = true
+   |         `- warning: 'acceptsTouchEvents' was deprecated in macOS 10.12.2: Use allowedTouchTypes instead [#DeprecatedDeclaration]
+13 |         allowedTouchTypes = [.indirect]
+14 |         wantsRestingTouches = true
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+/Users/runner/work/CookieIpadTool/CookieIpadTool/macos/build/Lint.app: replacing existing signature
+Built /Users/runner/work/CookieIpadTool/CookieIpadTool/macos/build/Lint-macOS.zip
+PASS: Native WKWebView loads Lint, saves a large note, exposes trackpad controls, and opens the code editor.

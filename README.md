@@ -1,1 +1,1 @@
-#Lint project
+Lint project

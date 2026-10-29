@@ -223,7 +223,7 @@ test("notes layout fits desktop and mobile; flashcard language options remain Py
   await page
     .getByLabel("Note text", { exact: true })
     .fill(
-      "Write it down. Sketch it out.\n\nA small thought can become something worth remembering.",
+      "",
     );
   const rect = await board(page);
   await stroke(page, rect);

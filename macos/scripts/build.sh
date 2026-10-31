@@ -23,4 +23,12 @@ codesign --force --deep --sign - "$app_path"
 codesign --verify --deep --strict "$app_path"
 ditto -c -k --sequesterRsrc --keepParent "$app_path" "$output/Lint-macOS.zip"
 shasum -a 256 "$output/Lint-macOS.zip" > "$output/Lint-macOS.zip.sha256"
-echo "Built $output/Lint-macOS.zip"
+# Build a drag-to-Applications disk image using macOS's verified disk-image tools.
+dmg_stage="$(mktemp -d "$output/dmg-stage.XXXXXX")"
+trap 'rm -rf "$dmg_stage"' EXIT
+ditto "$app_path" "$dmg_stage/Lint.app"
+ln -s /Applications "$dmg_stage/Applications"
+hdiutil create -volname Lint -srcfolder "$dmg_stage" -ov -format UDZO "$output/Lint-macOS.dmg"
+hdiutil verify "$output/Lint-macOS.dmg"
+(cd "$output" && shasum -a 256 Lint-macOS.dmg > Lint-macOS.dmg.sha256)
+echo "Built $output/Lint-macOS.dmg and $output/Lint-macOS.zip"

@@ -1,7 +1,7 @@
 name: Build Lint for macOS
 on:
   push:
-    branches: [lint-macos]
+    branches: [main, lint-macos]
   workflow_dispatch:
 permissions:
   contents: write
@@ -34,6 +34,8 @@ jobs:
           path: |
             macos/build/Lint-macOS.zip
             macos/build/Lint-macOS.zip.sha256
+            macos/build/Lint-macOS.dmg
+            macos/build/Lint-macOS.dmg.sha256
           retention-days: 30
       - uses: actions/checkout@v4
         with:
@@ -48,7 +50,7 @@ jobs:
           cp macos-build.log pages/downloads/macos-build.log
           node -e 'require("fs").writeFileSync("pages/downloads/macos-build.json", JSON.stringify({commit:process.env.GITHUB_SHA,status:process.env.BUILD_OUTCOME,run:process.env.GITHUB_RUN_ID}))'
           if [ "$BUILD_OUTCOME" = success ]; then
-            cp macos/build/Lint-macOS.zip pages/downloads/
+            cp macos/build/Lint-macOS.zip macos/build/Lint-macOS.dmg macos/build/Lint-macOS.dmg.sha256 pages/downloads/
             shasum -a 256 pages/downloads/Lint-macOS.zip | sed 's|pages/downloads/||' > pages/downloads/Lint-macOS.zip.sha256
           fi
           cd pages

@@ -53,14 +53,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, WKSc
         let script = """
         (() => {
           if (!window.lintNative || !document.querySelector('.deck-tile')) throw new Error('App did not start');
-          document.querySelector('#lint-notes-nav').click();
-          document.querySelector('#notes-new-note').click();
-          const canvas = document.querySelector('#note-canvas');
-          if (!canvas || canvas.viewBox.baseVal.height !== 1400) throw new Error('Native notes did not initialize');
-          if (!document.querySelector('.native-trackpad-controls')) throw new Error('Native trackpad controls missing');
-          const notes = JSON.parse(localStorage.getItem('lint.web.notes.v1'));
-          if (notes.notes.length !== 1) throw new Error('Notes did not save');
-          document.querySelector('[data-page="overview"]').click();
+          if (document.querySelector('#lint-notes-nav') || document.querySelector('#notes-root')) throw new Error('Notes must not appear in the Mac app');
           document.querySelector('[data-deck]').click();
           document.querySelector('[data-add]').click();
           const kind = document.querySelector('#kind'); kind.value = 'coding'; kind.dispatchEvent(new Event('change'));
@@ -71,7 +64,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, WKSc
         webView.evaluateJavaScript(script) { result, error in
             if let error = error { print("FAIL: Native WKWebView smoke test: \(error.localizedDescription)"); exit(1) }
             guard result as? Bool == true else { print("FAIL: Unexpected smoke test result"); exit(1) }
-            print("PASS: Native WKWebView loads Lint, saves a large note, exposes trackpad controls, and opens the code editor.")
+            print("PASS: Native WKWebView loads Lint without Notes and opens the code editor.")
             exit(0)
         }
     }

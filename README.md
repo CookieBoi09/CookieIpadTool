@@ -6,7 +6,7 @@ https://cookieboi09.github.io/CookieIpadTool/
 
 ## macOS desktop app
 
-A native AppKit/WKWebView app bundles the full website and adds absolute trackpad positioning on a larger notes page. See [macOS build and usage instructions](macos/README.md). The public download page is `desktop.html` on GitHub Pages; downloads appear after a successful macOS build. Website and app libraries are separate, with manual backup transfer.
+A native AppKit/WKWebView app bundles the flashcard workspace without Notes. A DMG installer is produced by the macOS build. See [macOS build and usage instructions](macos/README.md). The public download page is `desktop.html` on GitHub Pages; downloads appear after a successful macOS build. Website and app libraries are separate, with manual backup transfer.
 
 ## Restudy a deck
 

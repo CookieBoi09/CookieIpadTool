@@ -19,22 +19,22 @@ macos/Sources/TrackpadView.swift:12:9: warning: 'acceptsTouchEvents' was depreca
 /Users/runner/work/Lint/Lint/macos/build/Lint.app: replacing existing signature
 created: /Users/runner/work/Lint/Lint/macos/build/Lint-macOS.dmg
 Checksumming Protective Master Boot Record (MBR : 0)…
-Protective Master Boot Record (MBR :: verified   CRC32 $75E98999
+Protective Master Boot Record (MBR :: verified   CRC32 $44814AED
 Checksumming GPT Header (Primary GPT Header : 1)…
- GPT Header (Primary GPT Header : 1): verified   CRC32 $26143E6A
+ GPT Header (Primary GPT Header : 1): verified   CRC32 $DC366C5E
 Checksumming GPT Partition Data (Primary GPT Table : 2)…
-GPT Partition Data (Primary GPT Tabl: verified   CRC32 $AE2182DD
+GPT Partition Data (Primary GPT Tabl: verified   CRC32 $4C6EE64C
 Checksumming  (Apple_Free : 3)…
                     (Apple_Free : 3): verified   CRC32 $00000000
 Checksumming disk image (Apple_APFS : 4)…
-         disk image (Apple_APFS : 4): verified   CRC32 $8C81DAF2
+         disk image (Apple_APFS : 4): verified   CRC32 $6F6F2747
 Checksumming  (Apple_Free : 5)…
                     (Apple_Free : 5): verified   CRC32 $00000000
 Checksumming GPT Partition Data (Backup GPT Table : 6)…
-GPT Partition Data (Backup GPT Table: verified   CRC32 $AE2182DD
+GPT Partition Data (Backup GPT Table: verified   CRC32 $4C6EE64C
 Checksumming GPT Header (Backup GPT Header : 7)…
-  GPT Header (Backup GPT Header : 7): verified   CRC32 $5C530F67
-verified   CRC32 $802613A6
+  GPT Header (Backup GPT Header : 7): verified   CRC32 $FFD50B50
+verified   CRC32 $CC6382AE
 hdiutil: verify: checksum of "/Users/runner/work/Lint/Lint/macos/build/Lint-macOS.dmg" is VALID
 Built /Users/runner/work/Lint/Lint/macos/build/Lint-macOS.dmg and /Users/runner/work/Lint/Lint/macos/build/Lint-macOS.zip
 PASS: Native WKWebView loads Lint without Notes and opens the code editor.

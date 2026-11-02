@@ -1,3 +1,4 @@
+import {build} from 'esbuild';
 import {cp,readFile,writeFile,mkdir,rm} from 'node:fs/promises';
 import path from 'node:path';
 const destination=process.argv[2];
@@ -8,7 +9,9 @@ await cp('site',site,{recursive:true});
 // Notes are not part of the desktop app. Remove assets from reused build output too.
 await rm(path.join(site,'notes'),{recursive:true,force:true});
 await rm(path.join(site,'notes-native.js'),{force:true});
+await build({entryPoints:['src/notion/app.js'],bundle:true,format:'iife',target:'safari16',outfile:path.join(site,'notion-native.js')});
 const index=await readFile(path.join(site,'index.html'),'utf8');
 await writeFile(path.join(site,'index.html'),index
   .replace('    <link rel="stylesheet" href="notes/style.css" />\n','')
-  .replace('    <script type="module" src="notes/app.js"></script>\n',''));
+  .replace('    <script type="module" src="notes/app.js"></script>\n','')
+  .replace('</body>', '<script src="notion-native.js"></script></body>'));

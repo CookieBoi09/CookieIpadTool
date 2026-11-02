@@ -3,6 +3,7 @@ import WebKit
 import Darwin
 
 final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, WKScriptMessageHandler, WKNavigationDelegate, WKUIDelegate, WKDownloadDelegate {
+    private let notion = NotionSync()
     private var window: NSWindow!
     private var web: WKWebView!
     private var pad: TrackpadView!
@@ -52,6 +53,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, WKSc
         guard ProcessInfo.processInfo.arguments.contains("--smoke-test") else { return }
         let script = """
         (() => {
+          if (!window.lintNotion || typeof window.lintNotion.sync !== 'function') throw new Error('Notion sync bridge did not load');
           if (!window.lintNative || !document.querySelector('.deck-tile')) throw new Error('App did not start');
           if (document.querySelector('#lint-notes-nav') || document.querySelector('#notes-root')) throw new Error('Notes must not appear in the Mac app');
           document.querySelector('[data-deck]').click();
@@ -77,6 +79,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, WKSc
               let url = message.frameInfo.request.url, url.isFileURL,
               url.standardizedFileURL.path.hasPrefix(siteURL.path + "/"),
               let body = message.body as? [String: Any], let type = body["type"] as? String else { return }
+        if type == "notionRequest" { notion.handle(body, web: web); return }
         switch type {
         case "enable":
             enabled = body["enabled"] as? Bool ?? false
@@ -126,6 +129,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, WKSc
         pad?.stop(); if let monitor = keyMonitor { NSEvent.removeMonitor(monitor) }
         web?.configuration.userContentController.removeScriptMessageHandler(forName: "lintNative")
     }
+    @objc private func notionGuide() { NSWorkspace.shared.open(URL(string: "https://github.com/CookieBoi09/Lint/blob/main/docs/NOTION.md")!) }
+    @objc private func connectNotion() { notion.configure(window: window) }
+    @objc private func syncNotion() { notion.sync(window: window, web: web) }
+    @objc private func disconnectNotion() { notion.disconnect(window: window) }
     private func makeMenu() {
         let bar = NSMenu(), appItem = NSMenuItem(), appMenu = NSMenu()
         appMenu.addItem(withTitle: "About Lint", action: #selector(NSApplication.orderFrontStandardAboutPanel(_:)), keyEquivalent: "")
@@ -135,6 +142,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, WKSc
         for (title, action, key) in [("Undo", "undo:", "z"), ("Cut", "cut:", "x"), ("Copy", "copy:", "c"), ("Paste", "paste:", "v"), ("Select All", "selectAll:", "a")] {
             edit.addItem(withTitle: title, action: Selector(action), keyEquivalent: key)
         }
-        editItem.submenu = edit; bar.addItem(editItem); NSApp.mainMenu = bar
+        editItem.submenu = edit; bar.addItem(editItem)
+        let notionItem = NSMenuItem(), notionMenu = NSMenu(title: "Notion")
+        for (title, action) in [("Setup Guide…", #selector(notionGuide)), ("Connect Notion…", #selector(connectNotion)), ("Sync Now…", #selector(syncNotion)), ("Disconnect…", #selector(disconnectNotion))] {
+            let item = notionMenu.addItem(withTitle: title, action: action, keyEquivalent: ""); item.target = self
+        }
+        notionItem.submenu = notionMenu; bar.addItem(notionItem); NSApp.mainMenu = bar
     }
 }

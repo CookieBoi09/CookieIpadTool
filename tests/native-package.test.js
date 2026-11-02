@@ -14,6 +14,8 @@ test('desktop packaging excludes Notes, including stale bundles, and retains fla
     const html = await readFile(path.join(output, 'site/index.html'), 'utf8');
     assert.doesNotMatch(html, /notes\/(?:app.js|style.css)|notes-native.js/);
     assert.match(html, /src="app.js"/);
+    assert.match(html, /src="notion-native.js"/);
+    await access(path.join(output, "site/notion-native.js"));
     await access(path.join(output, 'site/app.js'));
     await assert.rejects(access(path.join(output, 'site/notes')), {code:'ENOENT'});
     await assert.rejects(access(path.join(output, 'site/notes-native.js')), {code:'ENOENT'});

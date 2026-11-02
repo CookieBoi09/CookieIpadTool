@@ -1,6 +1,6 @@
 # Lint for macOS
 
-Native AppKit + WKWebView app for macOS 13+. It bundles the current Lint website: math/LaTeX and Python/Java cards, answer practice and comparison, explanations, spaced repetition and restudy, flashcard folders and JSON backups. Notes are excluded from the desktop bundle; existing stored note data is not deleted. It has no backend subscription or paid API.
+Native AppKit + WKWebView app for macOS 13+. It bundles the current Lint website: math/LaTeX and Python/Java cards, answer practice and comparison, explanations, spaced repetition and restudy, flashcard folders and JSON backups. Notes are excluded from the desktop bundle; existing stored note data is not deleted. Flashcards work offline. Optional Notion sync connects directly to your Notion workspace.
 
 ## Build
 
@@ -23,3 +23,7 @@ The native smoke test runs with non-persistent web storage and checks that the b
 The app uses WKWebView's persistent local storage. It does not access the Safari/Chrome website's storage automatically. Export flashcards from the website, then restore them in the app. This is manual transfer, not synchronization. Notes are no longer included in the desktop app; existing note data is not erased.
 
 Only bundled local pages can navigate inside the native window. File imports and backup exports use native open/save panels.
+
+## Notion sync
+
+Version 1.1.0 adds **Notion → Connect Notion…** and **Sync Now…**. Follow the [setup guide](../docs/NOTION.md) to create an internal Notion integration and database. Sync is manual and bidirectional for card content; scheduling stays local. Tokens are stored in Keychain.

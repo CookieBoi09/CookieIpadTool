@@ -14,7 +14,7 @@ node macos/scripts/prepare-site.mjs "$app_path/Contents/Resources"
 sdk="$(xcrun --sdk macosx --show-sdk-path)"
 for architecture in arm64 x86_64; do
   xcrun swiftc -swift-version 5 -O -sdk "$sdk" -target "$architecture-apple-macosx13.0" \
-    -framework AppKit -framework WebKit macos/Sources/*.swift -o "$output/bin/Lint-$architecture"
+    -framework AppKit -framework WebKit -framework Security macos/Sources/*.swift -o "$output/bin/Lint-$architecture"
 done
 xcrun lipo -create "$output/bin/Lint-arm64" "$output/bin/Lint-x86_64" -output "$app_path/Contents/MacOS/Lint"
 xcrun swift macos/scripts/icon.swift "$output"

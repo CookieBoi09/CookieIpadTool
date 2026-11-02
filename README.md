@@ -72,3 +72,7 @@ The cloud workspace was replaced before notes work began. The prior uncommitted 
 Coverage includes normal scroll vs. Space drawing, clipped stroke boundaries, pen/highlighter settings, undo/redo, blur release, Space in text inputs, nested folder operations, reload persistence, backup isolation, corrupt-data preservation, desktop/mobile layout, and the existing flashcard Python/Java selector.
 
 Browser interaction tests run in Linux Chromium. Physical Mac trackpad and Safari behavior still need device testing.
+
+## Notion integration (Mac app)
+
+Use the Mac menu **Notion → Setup Guide…** to configure two-way, on-demand flashcard sync. See [Notion setup and sync behavior](docs/NOTION.md).

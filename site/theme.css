@@ -1,0 +1,77 @@
+/* Soft sage surfaces with dark forest text. Loaded after the bundled styles. */
+:root {
+  color-scheme: light;
+  background: #f3f8ee;
+  color: #243c2c;
+  --mint: #376b42;
+  --dim: #586d57;
+  --line: #c9d9bf;
+  --panel: #fafff6;
+}
+.sidebar { background: #e6efdd; }
+.topbar { background: #f3f8ee; }
+.nav-item, .folder summary, .folder-menu, .add-deck,
+.sidebar-bottom button, .sidebar-bottom p, .nav-heading,
+.breadcrumb, .breadcrumb strong, .breadcrumb > span, .top-label,
+.eyebrow, .hero-note, .art-caption, .stat div > span, .stat > .icon,
+h2 > span, .deck-folder, .deck-tile-bottom, .deck-tile-bottom span:last-child,
+.new-deck-tile, .new-deck-tile > span:last-child, .quiet-note, .quiet-note span,
+footer, .card-meta, .due-label, .row-arrow, .empty, form label, .field-hint,
+.preview-label, .study-meta, .reveal-row, .close { color: #586d57; }
+.nav-item.active, .filters .selected { background: #cfe4c1; color: #234e2d; }
+.nav-item:hover { background: #d9e8ce; }
+.nav-item small { background: #c4dcb4; color: #294f2f; }
+.folder-contents, .local-badge, .outline, .stat, .deck-tile-bottom,
+.new-deck-tile, .new-deck-tile > span:first-child, .quiet-note, footer,
+.close, .code-container { border-color: #c0d2b5; }
+.local-badge { color: #4d6549; background: #edf5e5; }
+h1 em, .brand-dot, .card-row > .icon, .empty > span { color: #376b42; }
+.primary { background: #376b42; color: #ffffff; }
+.primary:hover:not(:disabled) { background: #2c5835; filter: none; }
+.outline { background: #fafff6; color: #355b39; }
+button:hover:not(:disabled) { filter: brightness(.97); }
+.art-card { box-shadow: 0 16px 30px #294d2518; }
+.art-card.rear { background: #e0ecd6; border-color: #b5cba5; color: #49633f; }
+.art-card.rear code { color: #426039; }
+.art-card.front { background: #cfe5b9; border-color: #b5ce9c; color: #304d2a; }
+.stats { background: linear-gradient(100deg, #e4efd9, #f0f7e9); }
+.deck-tile { background: #e8f2df; border-color: #c3d6b4; }
+.deck-tile.tone-1 { background: #e6f1e9; border-color: #bfd4c4; }
+.deck-tile.tone-2 { background: #f0f1df; border-color: #d3d6b6; }
+.deck-tile-top > .icon { background: #cee2bc; color: #3c6031; }
+.tone-1 .deck-tile-top > .icon { background: #cce2d3; color: #315e49; }
+.tone-2 .deck-tile-top > .icon { background: #e1e3bd; color: #5a6032; }
+.deck-tile-top > span:last-child { color: #4a6342; border-color: #bacdaf; }
+.new-deck-tile { background: #f6fbf0; }
+.quiet-note { background: #edf5e5; }
+input, textarea, select { background: #fcfff9; color: #243c2c; border-color: #afc5a2; }
+input::placeholder, textarea::placeholder { color: #64765f; opacity: 1; }
+input:focus, textarea:focus, select:focus { border-color: #467b43; box-shadow: 0 0 0 3px #467b4320; }
+.card-row { background: #fafff6; border-color: #c9d9bf; }
+.due-label.is-due { color: #315b2d; background: #dceccc; }
+dialog { background: #f7fbed; color: #243c2c; border-color: #bdcfb1; box-shadow: 0 25px 80px #183c2933; }
+dialog::backdrop { background: #243c2c55; }
+.danger { background: #fbe5dc; color: #853d2e; border-color: #d9afa1; }
+.danger-zone p { color: #6e6552; }
+.math-preview { background: #eaf2e2; }
+.code-toolbar { background: #dfead6; color: #415b39; }
+.small-button { background: #c7dfb5; color: #2d4e24; }
+/* CodeMirror keeps its own high-contrast syntax theme. */
+.console { background: #e8f1df; color: #315629; }
+#form-error { color: #9c392c; }
+progress, progress::-webkit-progress-bar { background: #d3e1c6; }
+.ratings button { background: #dceccd; color: #31502a; border-color: #adc69a; }
+.ratings button.rate-again { background: #f3e8cf; color: #705224; border-color: #d7c396; }
+.warning, .modal-status { color: #805b20; }
+.warning { background: #fff6de; border-color: #d5bc7d; }
+#toast { background: #e5f2da; color: #2e512a; border-color: #9cba87; box-shadow: 0 10px 30px #294d2520; }
+.coding-answer-grid h3, .solution-explanation h3 { color: #3b6032; }
+.saved-solution { background: #f8fcf2; color: #2c4929; border-color: #c3d3b7; }
+.answer-comparison { background: #edf5e5; border-color: #c0d2b2; }
+#comparison-status { color: #79551f; }
+#comparison-status[data-result=match] { color: #32642d; }
+.answer-comparison summary, .diff-same, #solution-explanation { color: #48613e; }
+.diff-answer { color: #853d2e; background: #fae6dd; }
+.diff-solution { color: #315b2c; background: #dceccb; }
+.solution-explanation { background: #e6f1dc; border-color: #90b576; }
+.practice-notice { background: #e5f1d9; color: #3d6032; border-color: #bdd1ad; }

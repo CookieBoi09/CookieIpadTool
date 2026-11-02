@@ -35,7 +35,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, WKSc
         pad = TrackpadView(frame: content.bounds); pad.autoresizingMask = [.width, .height]; pad.webView = web
         pad.onFrame = { [weak self] data in self?.send(data) }; content.addSubview(pad)
         window = NSWindow(contentRect: content.bounds, styleMask: [.titled, .closable, .miniaturizable, .resizable], backing: .buffered, defer: false)
-        window.appearance = NSAppearance(named: .darkAqua)
+        window.appearance = NSAppearance(named: .aqua)
         window.title = "Lint"; window.minSize = NSSize(width: 850, height: 650); window.contentView = content; window.delegate = self
         window.setFrameAutosaveName("LintMainWindow"); window.center(); window.makeKeyAndOrderFront(nil)
         keyMonitor = NSEvent.addLocalMonitorForEvents(matching: [.keyUp]) { [weak self] event in
